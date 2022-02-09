@@ -4,14 +4,12 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-3">
-          <LayerList />
-        </div>
-        <div className="col-9">
-          <MapFrame />
-        </div>
+    <div className="row g-0">
+      <div className="col-3">
+        <LayerList />
+      </div>
+      <div className="col-9">
+        <MapFrame />
       </div>
     </div>
   );
