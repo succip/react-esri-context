@@ -1,7 +1,11 @@
 import React from "react";
 
 const LayerList = () => {
-  return <p>Test</p>;
+  return (
+    <div className="layerList">
+      <h4>LayerList</h4>
+    </div>
+  );
 };
 
 export default LayerList;
