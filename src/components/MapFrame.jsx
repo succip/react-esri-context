@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useRef, useEffect } from "react";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
@@ -18,14 +18,14 @@ const MapFrame = ({ layerList, setLayerList }) => {
 
   const statesService = new FeatureLayer({
     url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/2",
+    name: "States",
+  });
+
+  map.layers.on("change", (event) => {
+    console.log("Layer added: ", event.added[0].title);
   });
 
   map.add(statesService);
-
-  mapView.on("layerview-create", ({ layerView }) => {
-    const newLayerList = [...layerList, layerView.layer.title];
-    setLayerList(newLayerList);
-  });
 
   useEffect(() => {
     if (mapRef.current) {

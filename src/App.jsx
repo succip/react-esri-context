@@ -2,10 +2,9 @@ import { useState } from "react";
 import LayerList from "./components/LayerList";
 import MapFrame from "./components/MapFrame";
 import "./app.css";
-import LayerContext from "./store/layer-context";
 
 function App() {
-  const [layerList, setLayerList] = useState(["DefaultLayer1", "Default Layer 2"]);
+  const [layerList, setLayerList] = useState([]);
 
   return (
     <div className="row g-0">
