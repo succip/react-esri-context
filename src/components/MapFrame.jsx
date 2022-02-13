@@ -22,7 +22,8 @@ const MapFrame = ({ layerList, setLayerList }) => {
   });
 
   map.layers.on("change", (event) => {
-    console.log("Layer added: ", event.added[0].title);
+    const updatedLayerList = [...layerList, event.added[0].title];
+    setLayerList(updatedLayerList);
   });
 
   map.add(statesService);
