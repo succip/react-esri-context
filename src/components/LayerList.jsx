@@ -1,9 +1,12 @@
 import React from "react";
 
-const LayerList = () => {
+const LayerList = ({ layerList }) => {
   return (
     <div className="layerList">
-      <p>LayerList</p>
+      <h3>Map Layers</h3>
+      {layerList.map((layer) => {
+        return <p key={layer}>{layer}</p>;
+      })}
     </div>
   );
 };

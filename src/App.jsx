@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="row g-0">
       <div className="col-2">
-        <LayerList />
+        <LayerList layerList={layerList} />
       </div>
       <div className="col-10">
         <MapFrame layerList={layerList} setLayerList={setLayerList} />

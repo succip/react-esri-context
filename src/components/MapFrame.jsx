@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import { countyService, statesService } from "../services/mapServices";
 
 const MapFrame = ({ layerList, setLayerList }) => {
   const mapRef = useRef(null);
@@ -16,20 +16,15 @@ const MapFrame = ({ layerList, setLayerList }) => {
     center: [-97, 39],
   });
 
-  const statesService = new FeatureLayer({
-    url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/2",
-    name: "States",
-  });
-
   map.layers.on("change", (event) => {
     const updatedLayerList = [...layerList, event.added[0].title];
     setLayerList(updatedLayerList);
   });
 
-  map.add(statesService);
-
   useEffect(() => {
     if (mapRef.current) {
+      map.add(countyService);
+      map.add(statesService);
       mapView.container = mapRef.current;
     }
   }, []);
