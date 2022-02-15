@@ -1,5 +1,7 @@
 import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
+import { useContext } from "react";
+import { AppContext } from "../store/AppContext";
 
 export const webmap = new ArcGISMap({
   basemap: "streets-vector",

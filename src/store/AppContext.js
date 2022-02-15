@@ -12,7 +12,7 @@ const initialState = {
 function reducer(state, { type, payload }) {
   switch (type) {
     case "ADD_LAYER":
-      return { ...state, payload };
+      return { ...state, layerList: [...state.layerList, payload] };
     default:
       return state;
   }
