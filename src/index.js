@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { AppContextProvider } from "./store/AppContext";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <AppContextProvider>
     <App />
-  </React.StrictMode>,
+  </AppContextProvider>,
+
   document.getElementById("root")
 );
