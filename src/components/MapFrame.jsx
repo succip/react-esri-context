@@ -1,35 +1,13 @@
 import React, { useRef, useEffect } from "react";
-import Map from "@arcgis/core/Map";
-import MapView from "@arcgis/core/views/MapView";
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import { initialize } from "../js/webmap";
 
 const MapFrame = ({ layerList, setLayerList }) => {
   const mapRef = useRef(null);
-
-  const map = new Map({
-    basemap: "streets-vector",
-  });
-
-  const mapView = new MapView({
-    map,
-    zoom: 5,
-    center: [-97, 39],
-  });
-
-  const statesService = new FeatureLayer({
-    url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/2",
-    name: "States",
-  });
-
-  map.layers.on("change", (event) => {
-    console.log("Layer added: ", event.added[0].title);
-  });
-
-  map.add(statesService);
+  console.log("component rendered");
 
   useEffect(() => {
     if (mapRef.current) {
-      mapView.container = mapRef.current;
+      initialize(mapRef.current);
     }
   }, []);
 
