@@ -1,15 +1,24 @@
 import React, { useRef, useEffect, useContext } from "react";
 import { initialize } from "../js/webmap";
-import AppContext from "../store/AppContext";
+import { AppContext } from "../store/AppContext";
+const testLayer = {
+  type: "ADD_LAYER",
+  payload: {
+    layerList: ["test layer1"],
+  },
+};
 
 const MapFrame = () => {
   const mapRef = useRef(null);
-  const layerContext = useContext(AppContext);
-  const layerListRef = useRef(layerContext.layerList);
+  const { dispatch } = useContext(AppContext);
 
   useEffect(() => {
     if (mapRef.current) {
-      initialize(mapRef.current);
+      const mapView = initialize(mapRef.current);
+
+      mapView.on("click", () => {
+        dispatch(testLayer);
+      });
     }
   }, []);
 

@@ -1,14 +1,28 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer, useState } from "react";
 
-const AppContext = createContext({
+export const AppContext = createContext({
   layerList: [],
   setLayerList: () => {},
 });
 
-export const AppContextProvider = (props) => {
-  const [layerList, setLayerList] = useState([]);
+const initialState = {
+  layerList: [],
+};
 
-  return <AppContext.Provider value={{ layerList, setLayerList }}>{props.children}</AppContext.Provider>;
+function reducer(state, { type, payload }) {
+  switch (type) {
+    case "ADD_LAYER":
+      return { ...state, payload };
+    default:
+      return state;
+  }
+}
+
+export const AppContextProvider = (props) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const value = { state, dispatch };
+
+  return <AppContext.Provider value={value}>{props.children}</AppContext.Provider>;
 };
 
 export default AppContext;
