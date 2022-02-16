@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useReducer } from "react";
 
 export const AppContext = createContext({
   layerList: [],
@@ -20,7 +20,15 @@ function reducer(state, { type, payload }) {
 
 export const AppContextProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const value = { state, dispatch };
+
+  const addLayer = (layer) => {
+    dispatch({
+      type: "ADD_LAYER",
+      payload: layer,
+    });
+  };
+
+  const value = { state, dispatch, addLayer };
 
   return <AppContext.Provider value={value}>{props.children}</AppContext.Provider>;
 };

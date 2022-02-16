@@ -1,20 +1,22 @@
 import React, { useRef, useEffect, useContext } from "react";
 import { initialize } from "../js/webmap";
 import { AppContext } from "../store/AppContext";
+import { statesService } from "../services/mapServices";
 
 const MapFrame = () => {
   const mapRef = useRef(null);
-  const { dispatch } = useContext(AppContext);
+  const { dispatch, addLayer } = useContext(AppContext);
 
   useEffect(() => {
     if (mapRef.current) {
       const mapView = initialize(mapRef.current);
 
-      mapView.map.layers.on("change", (event) => {
-        dispatch({
-          type: "ADD_LAYER",
-          payload: event.added[0].title,
-        });
+      mapView.on("click", () => {
+        console.log(mapView.center);
+      });
+
+      mapView.map.layers.on("change", ({ added }) => {
+        addLayer(added[0].title);
       });
     }
   }, []);

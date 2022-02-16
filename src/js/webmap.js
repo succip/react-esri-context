@@ -9,8 +9,8 @@ export const webmap = new ArcGISMap({
 
 const mapViewParams = {
   map: webmap,
-  zoom: 11,
-  center: [-122.85, 49.12],
+  zoom: 6,
+  center: [-120.72, 46.85],
 };
 
 export let view = new MapView(mapViewParams);
