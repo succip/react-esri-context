@@ -1,6 +1,7 @@
 import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
-import { statesService } from "../data/services";
+import { useContext } from "react";
+import { AppContext } from "../store/AppContext";
 
 export const webmap = new ArcGISMap({
   basemap: "streets-vector",
@@ -8,13 +9,9 @@ export const webmap = new ArcGISMap({
 
 const mapViewParams = {
   map: webmap,
-  zoom: 5,
-  center: [-97, 39],
+  zoom: 11,
+  center: [-122.85, 49.12],
 };
-
-webmap.layers.on("change", ({ added }) => {});
-
-webmap.add(statesService);
 
 export let view = new MapView(mapViewParams);
 

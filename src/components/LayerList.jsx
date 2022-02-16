@@ -1,9 +1,14 @@
-import React from "react";
+import { useContext } from "react";
+import { AppContext } from "../store/AppContext";
 
 const LayerList = () => {
+  const { state } = useContext(AppContext);
   return (
     <div className="layerList">
-      <p>LayerList</p>
+      <h3>Map Layers</h3>
+      {state.layerList.map((layer) => {
+        return <p key={layer}>{layer}</p>;
+      })}
     </div>
   );
 };
