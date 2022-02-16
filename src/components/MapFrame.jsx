@@ -12,11 +12,15 @@ const MapFrame = () => {
       const mapView = initialize(mapRef.current);
 
       mapView.on("click", () => {
-        console.log(mapView.center);
+        mapView.map.add(statesService);
       });
 
       mapView.map.layers.on("change", ({ added }) => {
-        addLayer(added[0].title);
+        addLayer({
+          name: added[0].title,
+          id: added[0].id,
+          url: added[0].url,
+        });
       });
     }
   }, []);
