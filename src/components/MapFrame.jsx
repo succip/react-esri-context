@@ -5,7 +5,7 @@ import { statesService } from "../services/mapServices";
 
 const MapFrame = () => {
   const mapRef = useRef(null);
-  const { dispatch, addLayer } = useContext(AppContext);
+  const { addLayer } = useContext(AppContext);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -20,6 +20,7 @@ const MapFrame = () => {
           name: added[0].title,
           id: added[0].id,
           url: added[0].url,
+          visible: true,
         });
       });
     }
